@@ -1,0 +1,55 @@
+namespace PharmacyERP2.Application.DTOs;
+
+public record MedicineCreateDto(
+    string MedicineName,
+    string? GenericName,
+    string? Manufacturer,
+    string? Category,
+    string? DosageForm,
+    string? Strength,
+    string? Unit,
+    decimal PurchasePrice,
+    decimal SalePrice,
+    int StockQuantity,
+    int ReorderLevel,
+    string? Barcode,
+    string? ShelfLocation,
+    DateTime? ManufactureDate,
+    DateTime? ExpiryDate,
+    string? Notes);
+
+public record MedicineUpdateDto(
+    string MedicineName,
+    string? GenericName,
+    string? Manufacturer,
+    string? Category,
+    string? DosageForm,
+    string? Strength,
+    string? Unit,
+    decimal PurchasePrice,
+    decimal SalePrice,
+    int StockQuantity,
+    int ReorderLevel,
+    string? Barcode,
+    string? ShelfLocation,
+    DateTime? ManufactureDate,
+    DateTime? ExpiryDate,
+    bool IsActive,
+    string? Notes);
+
+public record MedicineResponseDto(
+    int MedicineId,
+    string MedicineName,
+    string? GenericName,
+    string? Manufacturer,
+    string? Category,
+    decimal PurchasePrice,
+    decimal SalePrice,
+    int StockQuantity,
+    int ReorderLevel,
+    string? Barcode,
+    string? ShelfLocation,
+    DateTime? ExpiryDate,
+    bool IsActive,
+    bool IsLowStock,
+    bool IsExpiringSoon);
