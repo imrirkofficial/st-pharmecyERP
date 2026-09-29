@@ -20,6 +20,14 @@ public class Prescription : BaseEntity
     [StringLength(100)]
     public string? DoctorName { get; set; }
 
+    public int? DoctorId { get; set; }
+    [ForeignKey(nameof(DoctorId))]
+    public Doctor? Doctor { get; set; }
+
+    /// <summary>Scanned prescription image path.</summary>
+    [StringLength(500)]
+    public string? ImagePath { get; set; }
+
     [StringLength(200)]
     public string? Diagnosis { get; set; }
 

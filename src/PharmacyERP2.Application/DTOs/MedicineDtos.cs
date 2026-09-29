@@ -16,7 +16,11 @@ public record MedicineCreateDto(
     string? ShelfLocation,
     DateTime? ManufactureDate,
     DateTime? ExpiryDate,
-    string? Notes);
+    string? Notes,
+    int UnitsPerStrip = 10,
+    int StripsPerBox = 10,
+    bool IsControlled = false,
+    decimal VatPercent = 0);
 
 public record MedicineUpdateDto(
     string MedicineName,
@@ -35,7 +39,11 @@ public record MedicineUpdateDto(
     DateTime? ManufactureDate,
     DateTime? ExpiryDate,
     bool IsActive,
-    string? Notes);
+    string? Notes,
+    int UnitsPerStrip = 10,
+    int StripsPerBox = 10,
+    bool IsControlled = false,
+    decimal VatPercent = 0);
 
 public record MedicineResponseDto(
     int MedicineId,
@@ -52,4 +60,8 @@ public record MedicineResponseDto(
     DateTime? ExpiryDate,
     bool IsActive,
     bool IsLowStock,
-    bool IsExpiringSoon);
+    bool IsExpiringSoon,
+    int UnitsPerStrip = 10,
+    int StripsPerBox = 10,
+    bool IsControlled = false,
+    decimal VatPercent = 0);

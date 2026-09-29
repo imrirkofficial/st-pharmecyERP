@@ -17,7 +17,8 @@ public class MedicinesController(PharmacyDbContext db) : ControllerBase
         m.PurchasePrice, m.SalePrice, m.StockQuantity, m.ReorderLevel,
         m.Barcode, m.ShelfLocation, m.ExpiryDate, m.IsActive,
         m.StockQuantity <= m.ReorderLevel,
-        m.ExpiryDate.HasValue && m.ExpiryDate.Value.Date <= DateTime.UtcNow.Date.AddDays(30));
+        m.ExpiryDate.HasValue && m.ExpiryDate.Value.Date <= DateTime.UtcNow.Date.AddDays(30),
+        m.UnitsPerStrip, m.StripsPerBox, m.IsControlled, m.VatPercent);
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MedicineResponseDto>>> List(
@@ -87,7 +88,10 @@ public class MedicinesController(PharmacyDbContext db) : ControllerBase
             PurchasePrice = dto.PurchasePrice, SalePrice = dto.SalePrice,
             StockQuantity = dto.StockQuantity, ReorderLevel = dto.ReorderLevel,
             Barcode = dto.Barcode, ShelfLocation = dto.ShelfLocation,
-            ManufactureDate = dto.ManufactureDate, ExpiryDate = dto.ExpiryDate, Notes = dto.Notes
+            ManufactureDate = dto.ManufactureDate, ExpiryDate = dto.ExpiryDate, Notes = dto.Notes,
+            UnitsPerStrip = dto.UnitsPerStrip <= 0 ? 10 : dto.UnitsPerStrip,
+            StripsPerBox = dto.StripsPerBox <= 0 ? 10 : dto.StripsPerBox,
+            IsControlled = dto.IsControlled, VatPercent = dto.VatPercent
         };
         db.Medicines.Add(m);
         await db.SaveChangesAsync(ct);
@@ -112,6 +116,9 @@ public class MedicinesController(PharmacyDbContext db) : ControllerBase
         m.Barcode = dto.Barcode; m.ShelfLocation = dto.ShelfLocation;
         m.ManufactureDate = dto.ManufactureDate; m.ExpiryDate = dto.ExpiryDate;
         m.IsActive = dto.IsActive; m.Notes = dto.Notes; m.UpdatedDate = DateTime.UtcNow;
+        m.UnitsPerStrip = dto.UnitsPerStrip <= 0 ? 10 : dto.UnitsPerStrip;
+        m.StripsPerBox = dto.StripsPerBox <= 0 ? 10 : dto.StripsPerBox;
+        m.IsControlled = dto.IsControlled; m.VatPercent = dto.VatPercent;
         await db.SaveChangesAsync(ct);
         return Ok(Map(m));
     }

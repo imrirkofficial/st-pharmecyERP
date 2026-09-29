@@ -44,4 +44,13 @@ public class Medicine : BaseEntity
 
     [StringLength(500)]
     public string? Notes { get; set; }
+
+    // ── Bangladesh retail: strip/box conversion ──
+    /// <summary>Tablets per strip/pata (default 10).</summary>
+    public int UnitsPerStrip { get; set; } = 10;
+    /// <summary>Strips per box (default 10).</summary>
+    public int StripsPerBox { get; set; } = 10;
+    /// <summary>Controlled/scheduled drug: POS shows verification warning.</summary>
+    public bool IsControlled { get; set; }
+    public decimal VatPercent { get; set; }
 }

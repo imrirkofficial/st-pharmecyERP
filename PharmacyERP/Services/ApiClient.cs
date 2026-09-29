@@ -16,7 +16,7 @@ public sealed class ApiClient
 
     private ApiClient()
     {
-        var baseUrl = "http://localhost:5199";
+        var baseUrl = "http://localhost:5197";
         try
         {
             var cfgPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");

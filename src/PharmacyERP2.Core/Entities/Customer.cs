@@ -32,6 +32,9 @@ public class Customer : BaseEntity
 
     public decimal TotalPurchase { get; set; }
 
+    /// <summary>Current baki balance (Due − Collect).</summary>
+    public decimal DueBalance { get; set; }
+
     [StringLength(500)]
     public string? Notes { get; set; }
 

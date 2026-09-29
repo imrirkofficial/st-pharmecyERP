@@ -32,6 +32,8 @@ public class Purchase : BaseEntity
     [StringLength(500)]
     public string? Notes { get; set; }
 
+    public int? BranchId { get; set; }
+
     public ICollection<PurchaseItem> PurchaseItems { get; set; } = new List<PurchaseItem>();
 }
 

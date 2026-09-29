@@ -27,6 +27,16 @@ public class Sale : BaseEntity
     public decimal NetAmount { get; set; }
     public decimal PaidAmount { get; set; }
     public decimal ChangeAmount { get; set; }
+    /// <summary>Baki amount (Net − Paid, floor 0).</summary>
+    public decimal DueAmount { get; set; }
+    public decimal VatAmount { get; set; }
+
+    [StringLength(100)]
+    public string? TrxId { get; set; }
+
+    public int? BranchId { get; set; }
+    [ForeignKey(nameof(BranchId))]
+    public Branch? Branch { get; set; }
 
     [StringLength(50)]
     public string PaymentMethod { get; set; } = global::PharmacyERP2.Core.Enums.PaymentMethod.Cash;
@@ -35,6 +45,7 @@ public class Sale : BaseEntity
     public string? Notes { get; set; }
 
     public ICollection<SaleItem> SaleItems { get; set; } = new List<SaleItem>();
+    public ICollection<SalePayment> Payments { get; set; } = new List<SalePayment>();
 }
 
 public class SaleItem

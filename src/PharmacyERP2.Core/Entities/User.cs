@@ -27,5 +27,8 @@ public class User : BaseEntity
     [StringLength(20)]
     public string? Phone { get; set; }
 
+    /// <summary>Home branch (null = all branches).</summary>
+    public int? BranchId { get; set; }
+
     public DateTime? LastLoginDate { get; set; }
 }
